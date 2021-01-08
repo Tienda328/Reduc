@@ -1,9 +1,4 @@
-import {
-  INCREMENT,
-  DECREMENT,
-  DOIMAU1,
-  DOIMAU2,
-} from '../redux/actionType';
+import {INCREMENT, DECREMENT, DOIMAU1, DOIMAU2} from '../redux/actionType';
 
 const initialState = {
   number: 0,
