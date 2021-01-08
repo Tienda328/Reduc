@@ -7,25 +7,18 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {Provider} from 'react-redux';
+import store from './src/redux/store';
+import Navigator from './src/navigater/index';
 
 class App extends React.Component {
   render() {
     return (
-      <SafeAreaView style={styles.scrollView}>
-        <Text>Hehhe</Text>
-      </SafeAreaView>
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
     );
   }
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'red',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

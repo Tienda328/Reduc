@@ -1,24 +1,15 @@
 import * as React from 'react';
-import {Button, View, Text} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import MianScreen from '../screens/main';
+import Home1Screen from '../screens/home';
 
 const Stack = createStackNavigator();
-function HomeScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
 
 function DetailsScreen() {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={styles.cotainer}>
       <Text>Details Screen</Text>
     </View>
   );
@@ -27,9 +18,10 @@ class Navigator extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Navigator initialRouteName="main">
+          <Stack.Screen name="main" component={MianScreen} />
           <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen name="home1" component={Home1Screen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
@@ -37,3 +29,11 @@ class Navigator extends React.Component {
 }
 
 export default Navigator;
+
+const styles = StyleSheet.create({
+  cotainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
