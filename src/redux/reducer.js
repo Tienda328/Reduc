@@ -1,6 +1,14 @@
-import {INCREMENT, DECREMENT, DOIMAU1, DOIMAU2} from '../redux/actionType';
+import {
+  INCREMENT,
+  DECREMENT,
+  DOIMAU1,
+  DOIMAU2,
+  ADDDATA,
+  DELETEDATA,
+} from '../redux/actionType';
 
 const initialState = {
+  datatest: [],
   number: 0,
   isButon: true,
 };
@@ -26,6 +34,20 @@ export default function (state = initialState, action) {
       return {
         ...state,
         number: state.number - 1,
+      };
+    case ADDDATA:
+      state.datatest.push(action.payload);
+      return {
+        ...state,
+        datatest: state.datatest,
+      };
+    case DELETEDATA:
+      const key = state.datatest.indexOf(action.payload);
+      state.datatest.splice(key, 1);
+      // console.log(state.datatest);
+      return {
+        ...state,
+        datatest: state.datatest,
       };
     default:
       return state;

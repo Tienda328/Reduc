@@ -1,7 +1,15 @@
-import {INCREMENT, DECREMENT, DOIMAU1, DOIMAU2} from './actionType';
+import {
+  INCREMENT,
+  DECREMENT,
+  DOIMAU1,
+  DOIMAU2,
+  ADDDATA,
+  DELETEDATA,
+} from './actionType';
 
-export const increment = () => ({
+export const increment = (payload) => ({
   type: INCREMENT,
+  payload: payload,
 });
 
 export const decrement = () => ({
@@ -14,4 +22,13 @@ export const doimau1 = () => ({
 
 export const doimau2 = () => ({
   type: DOIMAU2,
+});
+
+export const adddata = (payload) => ({
+  type: ADDDATA,
+  payload: payload,
+});
+export const deleteData = (payload) => ({
+  type: DELETEDATA,
+  payload: payload,
 });
