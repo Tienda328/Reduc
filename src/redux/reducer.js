@@ -5,6 +5,7 @@ import {
   DOIMAU2,
   ADDDATA,
   DELETEDATA,
+  CONGTWE,
 } from '../redux/actionType';
 
 const initialState = {
@@ -30,6 +31,11 @@ export default function (state = initialState, action) {
         ...state,
         isButon: true,
       };
+    case CONGTWE:
+      return {
+        ...state,
+        number: state.number + 4,
+      };
     case DECREMENT:
       return {
         ...state,
@@ -42,12 +48,13 @@ export default function (state = initialState, action) {
         datatest: state.datatest,
       };
     case DELETEDATA:
-      const key = state.datatest.indexOf(action.payload);
-      state.datatest.splice(key, 1);
-      // console.log(state.datatest);
+      const newData = [...state.datatest];
+      const remove = newData.indexOf(action.payload);
+      // const key = state.datatest.indexOf(action.payload);
+      newData.splice(remove, 1);
       return {
         ...state,
-        datatest: state.datatest,
+        datatest: newData,
       };
     default:
       return state;

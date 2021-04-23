@@ -22,10 +22,12 @@ class Main extends React.Component {
 
   onAdd = () => {
     const {value} = this.state;
+    // const {datatest} = this.props;
     const arrColor = ['green', 'blue', 'gray', 'red'];
     this.setState({
       color: arrColor[Math.floor(Math.random() * arrColor.length)],
     });
+
     if (value === '') {
       return;
     } else {
@@ -34,6 +36,7 @@ class Main extends React.Component {
         value: '',
       });
     }
+    // const dates = [...datatest];
   };
   onDelete = (item) => {
     this.props.deleteData(item);
@@ -81,7 +84,9 @@ class Main extends React.Component {
             <Text style={styles.txtAdd}>Add</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.viewBorder} />
         <FlatList
+          ListFooterComponent={<View style={styles.viewFooter} />}
           data={datatest}
           renderItem={(item) => this.renderItem(item)}
           keyExtractor={(item, index) => index.toString()}
@@ -115,20 +120,20 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 40,
-    marginHorizontal: 8,
-    borderWidth: 1,
-    paddingLeft: 5,
+    paddingLeft: 10,
+    height: 50,
+    fontSize: 20,
+    marginHorizontal: 10,
     borderColor: 'gray',
+    backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 1,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   txtXoa: {
     color: 'white',
@@ -137,6 +142,13 @@ const styles = StyleSheet.create({
   txtNumber: {
     fontSize: 25,
   },
+  viewBorder: {
+    height: 1,
+    borderWidth: 1,
+    borderBottomColor: '#FAFAFA',
+    marginVertical: 15,
+  },
+  viewFooter: {height: 35},
   bntDelete: {
     backgroundColor: 'red',
     justifyContent: 'center',
@@ -160,14 +172,22 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     color: 'green',
+    paddingVertical: 10,
     fontSize: 22,
   },
   containerItem: {
     marginTop: 12,
     marginHorizontal: 12,
-    backgroundColor: 'yellow',
-    height: 40,
     alignItems: 'center',
     flexDirection: 'row',
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 });

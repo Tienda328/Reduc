@@ -3,8 +3,9 @@ import {
   DECREMENT,
   DOIMAU1,
   DOIMAU2,
-  ADDDATA,
+  CONGTWE,
   DELETEDATA,
+  ADDDATA,
 } from './actionType';
 
 export const increment = (payload) => ({
@@ -31,4 +32,7 @@ export const adddata = (payload) => ({
 export const deleteData = (payload) => ({
   type: DELETEDATA,
   payload: payload,
+});
+export const congtwe = () => ({
+  type: CONGTWE,
 });

@@ -19,7 +19,7 @@ class Navigator extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="main">
+        <Stack.Navigator initialRouteName="classMain">
           <Stack.Screen name="main" component={MianScreen} />
           <Stack.Screen name="Details" component={DetailsScreen} />
           <Stack.Screen name="home1" component={Home1Screen} />
