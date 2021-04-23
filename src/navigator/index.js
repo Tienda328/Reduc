@@ -12,13 +12,13 @@ class Navigator extends React.Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="TestApi" component={TestApiScreen} />
           <Stack.Screen name="Details" component={DetailsScreen} />
           <Stack.Screen
             name="Home"
             component={HomeScreen}
             options={{title: 'Overview'}}
           />
+          <Stack.Screen name="TestApi" component={TestApiScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

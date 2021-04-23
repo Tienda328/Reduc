@@ -6,32 +6,29 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  Alert,
 } from 'react-native';
 
 function Details({navigation}) {
   const [value, setValue] = useState('');
   const [data, setData] = useState([]);
 
-  const onAdd = () => {
+  const onAdd = async () => {
     if (value === '') {
       return;
     } else {
       let ada = data;
       ada.push(value);
-      setData(ada);
+      await setValue('');
+      await setData(ada);
     }
-
-    // setData(['caca'])
-    // data.push()
   };
-  const onDelete = (item) => {
+
+  const onDelete = async (item) => {
     const deletes = data.indexOf(item);
-
     data.splice(deletes, 1);
-    console.warn(data);
-    setData(data);
+    await setData(data);
   };
-
   return (
     <View style={styles.container}>
       <View style={styles.containerInput}>
@@ -51,13 +48,13 @@ function Details({navigation}) {
             return (
               <View style={styles.containerItem}>
                 <Text>{item}</Text>
-                <TouchableOpacity onPress={() => onDelete(item)}>
+                <TouchableOpacity onPress={async () => onDelete(item)}>
                   <Text style={styles.txtXoa}>xoa</Text>
                 </TouchableOpacity>
               </View>
             );
           }}
-          // keyExtractor={(item) => item.id}
+          keyExtractor={(item, index) => index.toString()}
         />
       </View>
     </View>

@@ -88,7 +88,7 @@ export default class Home extends React.Component {
           <FlatList
             data={dataTest}
             renderItem={({item}) => this.renderItem(item)}
-            // keyExtractor={(item) => item.id}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </View>
