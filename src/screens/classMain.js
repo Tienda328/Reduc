@@ -84,7 +84,7 @@ class Main extends React.Component {
         <FlatList
           data={datatest}
           renderItem={(item) => this.renderItem(item)}
-          // keyExtractor={(item) => item.id}
+          keyExtractor={(item, index) => index.toString()}
         />
       </View>
     );

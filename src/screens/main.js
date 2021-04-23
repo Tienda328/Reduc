@@ -66,7 +66,7 @@ function Main({navigation, number, datatest}) {
       <FlatList
         data={datatest}
         renderItem={(item) => renderItem(item)}
-        // keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );
