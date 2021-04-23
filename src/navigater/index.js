@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import MianScreen from '../screens/main';
 import Home1Screen from '../screens/home';
+import TestScreen from '../screens/Test';
 
 const Stack = createStackNavigator();
 
@@ -18,10 +19,11 @@ class Navigator extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="main">
+        <Stack.Navigator initialRouteName="test">
           <Stack.Screen name="main" component={MianScreen} />
           <Stack.Screen name="Details" component={DetailsScreen} />
           <Stack.Screen name="home1" component={Home1Screen} />
+          <Stack.Screen name="test" component={TestScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

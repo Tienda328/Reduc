@@ -1,4 +1,4 @@
-import {INCREMENT, DECREMENT, DOIMAU1, DOIMAU2} from './actionType';
+import {INCREMENT, DECREMENT, DOIMAU1, DOIMAU2, CONGTWE} from './actionType';
 
 export const increment = () => ({
   type: INCREMENT,
@@ -14,4 +14,8 @@ export const doimau1 = () => ({
 
 export const doimau2 = () => ({
   type: DOIMAU2,
+});
+
+export const congtwe = () => ({
+  type: CONGTWE,
 });

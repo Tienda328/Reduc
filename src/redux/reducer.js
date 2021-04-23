@@ -1,4 +1,10 @@
-import {INCREMENT, DECREMENT, DOIMAU1, DOIMAU2} from '../redux/actionType';
+import {
+  INCREMENT,
+  DECREMENT,
+  DOIMAU1,
+  DOIMAU2,
+  CONGTWE,
+} from '../redux/actionType';
 
 const initialState = {
   number: 0,
@@ -21,6 +27,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isButon: true,
+      };
+    case CONGTWE:
+      return {
+        ...state,
+        number: state.number + 4,
       };
     case DECREMENT:
       return {
