@@ -1,113 +1,73 @@
 import React from 'react';
 import {
-  Button,
+  //   Button,
   View,
   Text,
-  Alert,
   FlatList,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
+  //   TouchableOpacity,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {adddata, deleteData} from '../redux/action';
 
-class Main extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      color: 'blue',
+      data: props.datatest,
     };
   }
-
-  onAdd = () => {
-    const {value} = this.state;
-    const {datatest} = this.props;
-    const arrColor = ['green', 'blue', 'gray', 'red'];
-    this.setState({
-      color: arrColor[Math.floor(Math.random() * arrColor.length)],
-    });
-    const Duplicate = datatest.find((x) => x === value);
-    if (value === '') {
-      return;
-    } else if (Duplicate === value) {
-      Alert.alert(
-        'Cảnh báo',
-        'Bạn đã có key này, vui lòng nhập tên khác ',
-        [{text: 'OK', onPress: () => this.setState({value: ''})}],
-        {cancelable: false},
-      );
-    } else {
-      this.props.adddata(value);
-      this.setState({
-        value: '',
-      });
-    }
-    // const dates = [...datatest];
-  };
-  onDelete = (item) => {
-    Alert.alert(
-      'Cảnh báo',
-      'Bạn đã có key này, vui lòng nhập tên khác ',
-      [
-        {
-          text: 'Thoát',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {text: 'Xóa', onPress: () => this.props.deleteData(item)},
-      ],
-      {cancelable: false},
-    );
-  };
 
   renderItem = ({item}) => {
     return (
       <View style={styles.containerItem}>
         <Text style={styles.txtName}>{item}</Text>
-        <TouchableOpacity
-          style={styles.bntDelete}
-          onPress={() => this.onDelete(item)}>
+        {/* <TouchableOpacity style={styles.bntDelete}>
           <Text style={styles.txtXoa}>Xoa</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     );
   };
   onChangeText = (text) => {
-    this.setState({
-      value: text,
-    });
+    // const dates = [...this.props.datatest];
+    const dates = this.props.datatest;
+    // tìm kiếm theo chữ hoa
+    if (text) {
+      const newData = dates.filter((item) => {
+        const itemData = item ? item.toUpperCase() : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      this.setState({
+        value: text,
+        data: newData,
+      });
+    } else {
+      this.setState({
+        value: text,
+        data: dates,
+      });
+    }
   };
   render() {
-    const {value, color} = this.state;
-    const {number, navigation, datatest} = this.props;
+    const {value, data} = this.state;
     // const color = arrColor[Math.floor(Math.random() * arrColor.length)];
     return (
       <View style={styles.cotainer}>
-        <View style={styles.containerNumber}>
-          <Text style={styles.txtNumber}>{number}</Text>
-          <Button
-            title="Go to Detaicasls"
-            onPress={() => navigation.navigate('home1')}
-          />
-        </View>
         <View style={styles.cotainerHeader}>
+          <Text style={styles.txtSearch}>Tìm kiếm :</Text>
           <TextInput
             style={styles.input}
             value={value}
             onChangeText={(text) => this.onChangeText(text)}
           />
-          <TouchableOpacity
-            style={[styles.btnAdd, {backgroundColor: color}]}
-            onPress={() => this.onAdd()}>
-            <Text style={styles.txtAdd}>Add</Text>
-          </TouchableOpacity>
         </View>
         <View style={styles.viewBorder} />
         <FlatList
           ListFooterComponent={<View style={styles.viewFooter} />}
-          data={datatest}
+          data={data}
           renderItem={(item) => this.renderItem(item)}
           keyExtractor={(item, index) => index.toString()}
         />
@@ -123,7 +83,7 @@ const mapDispatchProps = {
   adddata,
   deleteData,
 };
-export default connect(mapStateProps, mapDispatchProps)(Main);
+export default connect(mapStateProps, mapDispatchProps)(Search);
 
 const styles = StyleSheet.create({
   cotainer: {
@@ -140,20 +100,10 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    paddingLeft: 10,
     height: 50,
     fontSize: 20,
-    marginHorizontal: 10,
-    borderColor: 'gray',
     backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    paddingLeft: 5,
   },
   txtXoa: {
     color: 'white',
@@ -166,7 +116,7 @@ const styles = StyleSheet.create({
     height: 1,
     borderWidth: 1,
     borderBottomColor: '#FAFAFA',
-    marginVertical: 15,
+    marginTop: 15,
   },
   viewFooter: {height: 35},
   bntDelete: {
@@ -177,8 +127,11 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 4,
   },
+  txtSearch: {
+    marginHorizontal: 5,
+  },
   btnAdd: {
-    // backgroundColor: 'blue',
+    backgroundColor: 'blue',
     padding: 10,
     marginRight: 8,
     justifyContent: 'center',
@@ -186,7 +139,21 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   cotainerHeader: {
+    marginTop: 15,
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 12,
+    backgroundColor: '#58FAF4',
+    shadowColor: '#000',
+    borderRadius: 6,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   txtName: {
     flex: 1,
@@ -199,7 +166,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginHorizontal: 12,
     alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: 'center',
     backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {

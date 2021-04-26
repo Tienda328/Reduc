@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import MianScreen from '../screens/main';
 import Home1Screen from '../screens/home';
 import ClassHomeScreen from '../screens/classMain';
+import SearchScreen from '../screens/search';
 
 const Stack = createStackNavigator();
 
@@ -19,11 +20,12 @@ class Navigator extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="classMain">
+        <Stack.Navigator initialRouteName="Search">
           <Stack.Screen name="main" component={MianScreen} />
           <Stack.Screen name="Details" component={DetailsScreen} />
           <Stack.Screen name="home1" component={Home1Screen} />
           <Stack.Screen name="classMain" component={ClassHomeScreen} />
+          <Stack.Screen name="Search" component={SearchScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

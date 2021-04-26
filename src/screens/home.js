@@ -41,7 +41,6 @@ class Home extends React.Component {
 
   render() {
     const {isButon} = this.props;
-    console.log(isButon);
     return (
       <SafeAreaView style={styles.scrollView}>
         <NewCount1 />
